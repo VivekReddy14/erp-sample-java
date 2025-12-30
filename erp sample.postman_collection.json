@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "2550246d-8673-4b50-9c25-825afa85d6a5",
+		"name": "erp sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34511490"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"alice\",\r\n  \"password\": \"password\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create hash",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/dev/hash?text=password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dev",
+						"hash"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get leave balances",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Employee-Id",
+						"value": "3"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/leaves/balances/my?year=2025",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"leaves",
+						"balances",
+						"my"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2025"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X GET \"http://localhost:8080/api/leaves/balances/my?year=2025\" \\\r\n  -H \"X-Employee-Id: 3\"\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "leave request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Employee-Id",
+						"value": "3"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"leaveTypeCode\": \"ANNUAL\",\r\n    \"startDate\": \"2025-01-10\",\r\n    \"endDate\": \"2025-01-12\",\r\n    \"reason\": \"Family event\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/leaves/request",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"leaves",
+						"request"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/leaves/request \\\r\n  -H \"Content-Type: application/json\" \\\r\n  -H \"X-Employee-Id: 3\" \\\r\n  -d '{\r\n    \"leaveTypeCode\": \"ANNUAL\",\r\n    \"startDate\": \"2025-01-10\",\r\n    \"endDate\": \"2025-01-12\",\r\n    \"reason\": \"Family event\"\r\n  }'\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "check my leave requests",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Employee-Id",
+						"value": "3"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/leaves/requests/my",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"leaves",
+						"requests",
+						"my"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8080/api/leaves/requests/my \\\r\n  -H \"X-Employee-Id: 3\"\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "get pending leave requests",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Employee-Id",
+						"value": "2"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/leaves/approvals/pending",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"leaves",
+						"approvals",
+						"pending"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8080/api/leaves/approvals/pending \\\r\n  -H \"X-Employee-Id: 2\"\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "approve leave request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Employee-Id",
+						"value": "2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"leaveRequestId\": 1,\r\n    \"note\": \"Approved by team lead\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/leaves/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"leaves",
+						"approve"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/leaves/approve \\\r\n  -H \"Content-Type: application/json\" \\\r\n  -H \"X-Employee-Id: 2\" \\\r\n  -d '{\r\n    \"leaveRequestId\": 1,\r\n    \"note\": \"Approved by team lead\"\r\n  }'\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "reject request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-Employee-Id",
+						"value": "2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"leaveRequestId\": 2,\r\n    \"note\": \"Project deadline\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/leaves/reject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"leaves",
+						"reject"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8080/api/leaves/reject \\\r\n  -H \"Content-Type: application/json\" \\\r\n  -H \"X-Employee-Id: 2\" \\\r\n  -d '{\r\n    \"leaveRequestId\": 2,\r\n    \"note\": \"Project deadline\"\r\n  }'\r\n"
+			},
+			"response": []
+		}
+	]
+}
